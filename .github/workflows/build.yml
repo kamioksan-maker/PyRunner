@@ -27,14 +27,10 @@ jobs:
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
 
-    - name: Download Gradle Wrapper
+    - name: Download Gradle Wrapper JAR
       run: |
         mkdir -p gradle/wrapper
-        curl -L -o gradle/wrapper/gradle-wrapper.jar https://raw.githubusercontent.com/gradle/gradle/v8.5.0/gradle/wrapper/gradle-wrapper.jar
-
-    - name: Create gradlew script
-      run: |
-        printf '#!/bin/sh\n\nAPP_BASE_NAME=${0##*/}\nAPP_HOME=$( cd "$( dirname "$0" )" > /dev/null && pwd )\nCLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar\nexec java -Xmx2048m -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@"\n' > gradlew
+        curl -fsSL -o gradle/wrapper/gradle-wrapper.jar https://raw.githubusercontent.com/gradle/gradle/v8.5.0/gradle/wrapper/gradle-wrapper.jar
         chmod +x gradlew
 
     - name: Create debug keystore
@@ -43,10 +39,10 @@ jobs:
         keytool -genkey -v -keystore app/debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
 
     - name: Build Debug APK
-      run: ./gradlew assembleDebug --no-daemon --no-build-cache --stacktrace
+      run: ./gradlew assembleDebug --no-daemon --no-build-cache --stacktrace --info
 
     - name: Build Release APK
-      run: ./gradlew assembleRelease --no-daemon --no-build-cache --stacktrace
+      run: ./gradlew assembleRelease --no-daemon --no-build-cache --stacktrace --info
 
     - name: List APK files
       run: |

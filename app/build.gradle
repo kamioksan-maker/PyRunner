@@ -52,13 +52,8 @@ android {
 }
 
 chaquopy {
-    productFlavors {
-        getByName("default") {
-            version "3.11"
-        }
-    }
-
     defaultConfig {
+        version "3.11"
         pip {
             install "numpy"
             install "requests"

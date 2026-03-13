@@ -27,14 +27,13 @@ jobs:
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
 
-    - name: Download Gradle Wrapper
+    - name: Setup Gradle Wrapper
       run: |
         mkdir -p gradle/wrapper
-        curl -L -o gradle/wrapper/gradle-wrapper.jar https://raw.githubusercontent.com/gradle/gradle/v8.5.0/gradle/wrapper/gradle-wrapper.jar
-
-    - name: Create gradlew script
-      run: |
-        printf '#!/bin/sh\n\nAPP_BASE_NAME=${0##*/}\nAPP_HOME=$( cd "$( dirname "$0" )" > /dev/null && pwd )\nCLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar\nexec java -Xmx2048m -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@"\n' > gradlew
+        # Download Gradle 8.5 and generate wrapper jar
+        wget -q https://services.gradle.org/distributions/gradle-8.5-bin.zip -O /tmp/gradle-8.5-bin.zip
+        unzip -q /tmp/gradle-8.5-bin.zip -d /tmp/gradle-home/
+        /tmp/gradle-home/gradle-8.5/bin/gradle wrapper --gradle-version=8.5 --project-dir=.
         chmod +x gradlew
 
     - name: Create debug keystore

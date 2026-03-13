@@ -47,6 +47,7 @@
                 android:layout_marginEnd="8dp"
                 android:backgroundTint="#4CAF50"
                 android:text="@string/run"
+                android:contentDescription="@string/btn_run_description"
                 app:icon="@android:drawable/ic_media_play" />
 
             <com.google.android.material.button.MaterialButton
@@ -56,6 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:text="@string/new_file"
+                android:contentDescription="@string/btn_new_description"
                 android:textColor="@color/white"
                 app:strokeColor="@color/teal_200" />
 
@@ -66,6 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:text="@string/open"
+                android:contentDescription="@string/btn_open_description"
                 android:textColor="@color/white"
                 app:strokeColor="@color/teal_200" />
 
@@ -75,6 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/save"
+                android:contentDescription="@string/btn_save_description"
                 android:textColor="@color/white"
                 app:strokeColor="@color/teal_200" />
 
@@ -129,6 +133,7 @@
                     android:fontFamily="monospace"
                     android:gravity="top|start"
                     android:hint="@string/code_editor_hint"
+                    android:contentDescription="@string/code_editor_description"
                     android:imeOptions="flagNoExtractUi"
                     android:inputType="textMultiLine|textNoSuggestions"
                     android:lineSpacingExtra="4dp"
@@ -173,6 +178,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/clear_output"
+                    android:contentDescription="@string/btn_clear_output_description"
                     android:textColor="@color/teal_200"
                     android:textSize="12sp" />
 

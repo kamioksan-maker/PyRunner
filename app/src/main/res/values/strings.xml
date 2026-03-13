@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PyRunner</string>
+    <string name="run">运行</string>
+    <string name="save">保存</string>
+    <string name="open">打开</string>
+    <string name="new_file">新建</string>
+    <string name="clear_output">清空输出</string>
+    <string name="code_editor_hint">在此输入Python代码...</string>
+    <string name="output_label">输出:</string>
+    <string name="file_name_hint">文件名</string>
+    <string name="dialog_save_title">保存文件</string>
+    <string name="dialog_open_title">打开文件</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确认</string>
+    <string name="file_saved">文件已保存</string>
+    <string name="file_loaded">文件已加载</string>
+    <string name="error_saving">保存失败</string>
+    <string name="error_loading">加载失败</string>
+    <string name="permission_required">需要存储权限才能访问文件</string>
+    <string name="no_files">暂无保存的脚本</string>
+    <string name="delete">删除</string>
+    <string name="rename">重命名</string>
+    <string name="examples">示例代码</string>
+    <string name="settings">设置</string>
+    <string name="about">关于</string>
+</resources>

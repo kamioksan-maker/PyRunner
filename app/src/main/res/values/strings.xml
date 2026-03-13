@@ -24,4 +24,10 @@
     <string name="examples">示例代码</string>
     <string name="settings">设置</string>
     <string name="about">关于</string>
+    <string name="btn_run_description">运行Python代码</string>
+    <string name="btn_new_description">新建Python脚本</string>
+    <string name="btn_open_description">打开已保存的脚本</string>
+    <string name="btn_save_description">保存当前脚本</string>
+    <string name="btn_clear_output_description">清空输出区域</string>
+    <string name="code_editor_description">Python代码编辑器</string>
 </resources>

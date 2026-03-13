@@ -7,6 +7,9 @@ on:
     branches: [ main, master ]
   workflow_dispatch:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,9 +24,6 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@v3
-
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
 
@@ -34,7 +34,7 @@ jobs:
 
     - name: Create gradlew script
       run: |
-        printf '#!/bin/sh\n\nAPP_BASE_NAME=${0##*/}\nAPP_HOME=$( cd "$( dirname "$0" )" > /dev/null && pwd )\nCLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar\nexec java -Xmx64m -Xms64m -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@"\n' > gradlew
+        printf '#!/bin/sh\n\nAPP_BASE_NAME=${0##*/}\nAPP_HOME=$( cd "$( dirname "$0" )" > /dev/null && pwd )\nCLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar\nexec java -Xmx2048m -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@"\n' > gradlew
         chmod +x gradlew
 
     - name: Create debug keystore
@@ -43,10 +43,10 @@ jobs:
         keytool -genkey -v -keystore app/debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
 
     - name: Build Debug APK
-      run: ./gradlew assembleDebug --no-daemon --stacktrace
+      run: ./gradlew assembleDebug --no-daemon --no-build-cache --stacktrace
 
     - name: Build Release APK
-      run: ./gradlew assembleRelease --no-daemon --stacktrace
+      run: ./gradlew assembleRelease --no-daemon --no-build-cache --stacktrace
 
     - name: List APK files
       run: |
